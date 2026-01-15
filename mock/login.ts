@@ -19,7 +19,7 @@ export default defineFakeRoute([
             permissions: ["*:*:*"],
             accessToken: "eyJhbGciOiJIUzUxMiJ9.admin",
             refreshToken: "eyJhbGciOiJIUzUxMiJ9.adminRefresh",
-            expires: "2030/10/30 00:00:00"
+            expires: Date.UTC(2030, 9, 30, 0, 0, 0)
           }
         };
       } else {
@@ -33,7 +33,7 @@ export default defineFakeRoute([
             permissions: ["permission:btn:add", "permission:btn:edit"],
             accessToken: "eyJhbGciOiJIUzUxMiJ9.common",
             refreshToken: "eyJhbGciOiJIUzUxMiJ9.commonRefresh",
-            expires: "2030/10/30 00:00:00"
+            expires: Date.UTC(2030, 9, 30, 0, 0, 0)
           }
         };
       }
