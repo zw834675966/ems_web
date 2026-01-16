@@ -9,6 +9,8 @@ export type PointMappingDto = {
   address: string;
   scale?: number;
   offset?: number;
+  /** 协议细节配置 JSON 字符串 */
+  protocolDetail?: string;
 };
 
 export type CreatePointMappingRequest = {
@@ -17,6 +19,7 @@ export type CreatePointMappingRequest = {
   address: string;
   scale?: number;
   offset?: number;
+  protocolDetail?: string;
 };
 
 export const listPointMappings = (projectId: string) => {

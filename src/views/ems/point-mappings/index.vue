@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref, watch } from "vue";
 import {
   listPointMappings,
   createPointMapping,
   type PointMappingDto
 } from "@/api/ems/pointMappings";
+import { listPoints, type PointDto } from "@/api/ems/points";
+import EmsProjectSelector from "@/components/EmsProjectSelector/index.vue";
 
 defineOptions({
   name: "EmsPointMappings"
@@ -14,6 +16,7 @@ const loading = ref(false);
 const items = ref<PointMappingDto[]>([]);
 const error = ref("");
 const projectId = ref("");
+const points = ref<PointDto[]>([]);
 const form = ref({
   pointId: "",
   sourceType: "mqtt",
@@ -22,11 +25,29 @@ const form = ref({
   offset: null as number | null
 });
 
+const pointOptions = computed(() =>
+  points.value.map(item => ({
+    label: `${item.key} (${item.pointId})`,
+    value: item.pointId
+  }))
+);
+
+const refreshPoints = async () => {
+  const pid = projectId.value.trim();
+  points.value = [];
+  if (!pid) return;
+  try {
+    const res = await listPoints(pid);
+    if (!res.success) return;
+    points.value = res.data ?? [];
+  } catch {}
+};
+
 const fetchList = async () => {
   error.value = "";
   const pid = projectId.value.trim();
   if (!pid) {
-    error.value = "请输入 projectId";
+    error.value = "请选择项目";
     return;
   }
   loading.value = true;
@@ -48,12 +69,12 @@ const submit = async () => {
   error.value = "";
   const pid = projectId.value.trim();
   if (!pid) {
-    error.value = "请输入 projectId";
+    error.value = "请选择项目";
     return;
   }
   const pointId = form.value.pointId.trim();
   if (!pointId) {
-    error.value = "请输入 pointId";
+    error.value = "请选择 point";
     return;
   }
   const sourceType = form.value.sourceType.trim();
@@ -98,25 +119,32 @@ const submit = async () => {
     loading.value = false;
   }
 };
+
+watch(
+  () => projectId.value,
+  async () => {
+    form.value.pointId = "";
+    await refreshPoints();
+  }
+);
 </script>
 
 <template>
-  <div>
+  <div class="ems-page">
     <el-card shadow="never" class="mb-4!">
       <template #header>
-        <div>点位映射列表</div>
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <div class="text-base font-medium">点位映射</div>
+            <div class="text-xs text-gray-500">Point ↔ Source（MQTT 地址）映射</div>
+          </div>
+          <EmsProjectSelector v-model="projectId" @change="fetchList" />
+        </div>
       </template>
-      <el-form label-width="120px">
-        <el-form-item label="projectId">
-          <el-input v-model="projectId" placeholder="项目 ID" />
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" :loading="loading" @click="fetchList">
-            加载列表
-          </el-button>
-          <span v-if="error" class="ml-2 text-red-500">{{ error }}</span>
-        </el-form-item>
-      </el-form>
+      <div class="flex items-center gap-2">
+        <el-button type="primary" :loading="loading" @click="fetchList">刷新列表</el-button>
+        <span v-if="error" class="text-red-500">{{ error }}</span>
+      </div>
       <el-table class="mt-4" :data="items" border>
         <el-table-column prop="sourceId" label="sourceId" min-width="220" />
         <el-table-column prop="pointId" label="pointId" min-width="220" />
@@ -132,11 +160,23 @@ const submit = async () => {
         <div>创建点位映射</div>
       </template>
       <el-form :model="form" label-width="120px">
-        <el-form-item label="projectId">
-          <el-input v-model="projectId" placeholder="项目 ID" />
-        </el-form-item>
         <el-form-item label="pointId">
-          <el-input v-model="form.pointId" placeholder="点位 ID" />
+          <el-select
+            v-model="form.pointId"
+            class="w-full"
+            filterable
+            placeholder="选择点位"
+          >
+            <el-option
+              v-for="opt in pointOptions"
+              :key="opt.value"
+              :label="opt.label"
+              :value="opt.value"
+            />
+          </el-select>
+          <div class="mt-1 text-xs text-gray-500">
+            若下拉为空，请先在“点位”页创建点位并刷新项目。
+          </div>
         </el-form-item>
         <el-form-item label="sourceType">
           <el-input v-model="form.sourceType" placeholder="mqtt" />
@@ -159,3 +199,11 @@ const submit = async () => {
     </el-card>
   </div>
 </template>
+
+<style scoped>
+.ems-page {
+  padding: var(--space-6);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+</style>

@@ -89,7 +89,7 @@ useEventListener(document, "keydown", ({ code }) => {
 </script>
 
 <template>
-  <div class="select-none">
+  <div class="login-page select-none">
     <img :src="bg" class="wave" />
     <div class="flex-c absolute right-5 top-3">
       <!-- 主题 -->

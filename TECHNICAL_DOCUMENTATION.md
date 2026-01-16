@@ -26,6 +26,10 @@ src/api/
 │   ├── points.ts          # 数据点管理
 │   ├── pointMappings.ts   # 数据点映射
 │   └── types.ts          # 通用类型定义
+├── rbac/                   # RBAC 管理模块接口（tenant 级）
+│   ├── users.ts
+│   ├── roles.ts
+│   └── permissions.ts
 ├── routes.ts            # 动态路由接口
 └── user.ts             # 用户认证接口
 ```
@@ -217,7 +221,7 @@ type PointMappingDto = {
 
 ```typescript
 proxy: {
-  "^/(login|refresh-token|get-async-routes|projects|health)": {
+  "^/(login|refresh-token|get-async-routes|projects|health|rbac)": {
     target: "http://127.0.0.1:8080",
     changeOrigin: true
   }

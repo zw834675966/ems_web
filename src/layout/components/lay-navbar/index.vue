@@ -24,7 +24,7 @@ const {
 </script>
 
 <template>
-  <div class="navbar bg-[#fff] shadow-xs shadow-[rgba(0,21,41,0.08)]">
+  <div class="navbar glass border-bottom">
     <LaySidebarTopCollapse
       v-if="device === 'mobile'"
       class="hamburger-container"
@@ -80,12 +80,28 @@ const {
   width: 100%;
   height: 48px;
   overflow: hidden;
+  /* Apple Blur Effect */
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  transform: translateZ(0); /* Optimize burden: GPU layer */
+  
+  /* Very subtle border */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all var(--transition-base);
 
   .hamburger-container {
     float: left;
     height: 100%;
     line-height: 48px;
     cursor: pointer;
+    padding: 0 var(--space-3);
+    margin: 0;
+    transition: opacity var(--transition-fast);
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
   .vertical-header-right {
@@ -94,24 +110,33 @@ const {
     justify-content: flex-end;
     min-width: 280px;
     height: 48px;
-    color: #000000d9;
+    color: var(--color-gray-700);
+    gap: var(--space-2);
+    padding-right: var(--space-4);
 
     .el-dropdown-link {
       display: flex;
       align-items: center;
       justify-content: space-around;
       height: 48px;
-      padding: 10px;
-      color: #000000d9;
+      padding: 0 var(--space-2);
+      color: var(--color-gray-700);
       cursor: pointer;
+      transition: opacity var(--transition-fast);
+
+      &:hover {
+        opacity: 0.7;
+      }
 
       p {
-        font-size: 14px;
+        font-size: 13px;
+        font-weight: 500;
+        margin-left: 8px;
       }
 
       img {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
       }
     }
@@ -119,7 +144,21 @@ const {
 
   .breadcrumb-container {
     float: left;
-    margin-left: 16px;
+    margin-left: var(--space-4);
+  }
+}
+
+/* Dark mode overrides */
+:global(.dark) .navbar {
+  background: rgba(29, 29, 31, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  
+  .vertical-header-right {
+    color: #fff;
+    
+    .el-dropdown-link {
+      color: #fff;
+    }
   }
 }
 

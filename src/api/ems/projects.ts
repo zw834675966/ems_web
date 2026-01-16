@@ -19,3 +19,13 @@ export const listProjects = () => {
 export const createProject = (data: CreateProjectRequest) => {
   return http.request<ApiResponse<ProjectDto>>("post", "/projects", { data });
 };
+
+export const updateProject = (projectId: string, data: Partial<CreateProjectRequest>) => {
+  return http.request<ApiResponse<ProjectDto>>("put", `/projects/${projectId}`, {
+    data
+  });
+};
+
+export const deleteProject = (projectId: string) => {
+  return http.request<ApiResponse<void>>("delete", `/projects/${projectId}`);
+};

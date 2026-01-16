@@ -31,3 +31,21 @@ export const createPoint = (projectId: string, data: CreatePointRequest) => {
     { data }
   );
 };
+export const updatePoint = (
+  projectId: string,
+  pointId: string,
+  data: Partial<CreatePointRequest>
+) => {
+  return http.request<ApiResponse<PointDto>>(
+    "put",
+    `/projects/${projectId}/points/${pointId}`,
+    { data }
+  );
+};
+
+export const deletePoint = (projectId: string, pointId: string) => {
+  return http.request<ApiResponse<void>>(
+    "delete",
+    `/projects/${projectId}/points/${pointId}`
+  );
+};

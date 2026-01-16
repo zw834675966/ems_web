@@ -6,11 +6,19 @@ export type GatewayDto = {
   projectId: string;
   name: string;
   status: string;
+  online?: boolean;
+  lastSeenAtMs?: number;
+  /** 协议类型: mqtt | modbus_tcp | tcp_server | tcp_client */
+  protocolType: string;
+  /** 协议配置 JSON 字符串 */
+  protocolConfig?: string;
 };
 
 export type CreateGatewayRequest = {
   name: string;
   status?: string;
+  protocolType?: string;
+  protocolConfig?: string;
 };
 
 export const listGateways = (projectId: string) => {
@@ -28,5 +36,23 @@ export const createGateway = (
     "post",
     `/projects/${projectId}/gateways`,
     { data }
+  );
+};
+export const updateGateway = (
+  projectId: string,
+  gatewayId: string,
+  data: Partial<CreateGatewayRequest>
+) => {
+  return http.request<ApiResponse<GatewayDto>>(
+    "put",
+    `/projects/${projectId}/gateways/${gatewayId}`,
+    { data }
+  );
+};
+
+export const deleteGateway = (projectId: string, gatewayId: string) => {
+  return http.request<ApiResponse<void>>(
+    "delete",
+    `/projects/${projectId}/gateways/${gatewayId}`
   );
 };

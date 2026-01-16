@@ -1,189 +1,262 @@
-.el-form-item__label {
-  font-weight: 700;
+/* ============================================
+   ELEMENT PLUS CUSTOMIZATION - Apple Style
+   ============================================ */
+
+/* Override Element Plus variables */
+:root {
+  --el-color-primary: var(--color-blue);
+  --el-color-primary-light-3: #4da3ff;
+  --el-color-primary-light-5: #80c2ff;
+  --el-color-primary-light-7: #b3e0ff;
+  --el-color-primary-light-8: #cceaff;
+  --el-color-primary-light-9: #e6f5ff;
+  --el-color-primary-dark-2: #005bb5;
+
+  --el-bg-color: #ffffff;
+  --el-bg-color-page: var(--color-gray-50);
+  --el-bg-color-overlay: #ffffff;
+
+  --el-text-color-primary: var(--color-gray-900);
+  --el-text-color-regular: var(--color-gray-600);
+  --el-text-color-secondary: var(--color-gray-500);
+  --el-text-color-placeholder: var(--color-gray-400);
+
+  --el-border-color: var(--color-gray-200);
+  --el-border-color-light: var(--color-gray-100);
+  --el-border-color-lighter: #f2f2f7;
+  --el-border-color-extra-light: #f5f5f7;
+
+  --el-border-radius-base: var(--radius-sm); /* 8px */
+  --el-border-radius-small: 6px;
+  --el-border-radius-round: var(--radius-full);
+
+  --el-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --el-box-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --el-box-shadow-lighter: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --el-box-shadow-dark: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  --el-font-size-base: 15px; /* Slightly smaller for interface elements */
+  --el-font-size-small: 13px;
+  --el-font-size-large: 17px;
 }
 
-.el-breadcrumb__inner,
-.el-breadcrumb__inner a {
-  font-weight: 400 !important;
-}
+/* Button Enhancements - Apple Style */
+.el-button {
+  font-family: var(--font-body);
+  font-weight: 400;
+  border-radius: var(--radius-full); /* Pill shape buttons */
+  transition: all var(--transition-fast);
+  padding: 8px 16px;
+  border: none; /* Cleaner look */
+  height: 32px;
 
-.el-dropdown-menu {
-  padding: 0 !important;
-}
-
-.is-dark {
-  z-index: 9999 !important;
-}
-
-/* 重置 el-button 中 icon 的 margin */
-.reset-margin [class*="el-icon"] + span {
-  margin-left: 2px !important;
-}
-
-/* 自定义 popover 的类名 */
-.pure-popper {
-  padding: 0 !important;
-}
-
-/* nprogress 适配 element-plus 的主题色 */
-#nprogress {
-  & .bar {
-    background-color: var(--el-color-primary) !important;
-  }
-
-  & .peg {
-    box-shadow:
-      0 0 10px var(--el-color-primary),
-      0 0 5px var(--el-color-primary) !important;
-  }
-
-  & .spinner-icon {
-    border-top-color: var(--el-color-primary);
-    border-left-color: var(--el-color-primary);
-  }
-}
-
-.pure-dialog {
-  .el-dialog__header.show-close {
-    padding-right: 16px;
-  }
-
-  .el-dialog__headerbtn {
-    top: 16px;
-    right: 12px;
-    width: 24px;
-    height: 24px;
-  }
-
-  .pure-dialog-svg {
-    color: var(--el-color-info);
-  }
-
-  .el-dialog__footer {
-    padding-top: 0;
-  }
-}
-
-/* 全局覆盖element-plus的el-tour、el-dialog、el-drawer、el-message-box、el-notification组件右上角关闭图标和el-upload上传文件列表右侧关闭图标的样式，表现更鲜明 */
-.el-dialog__headerbtn,
-.el-message-box__headerbtn {
-  &:hover {
-    .el-dialog__close {
-      color: var(--el-color-info) !important;
-    }
-  }
-}
-
-.el-icon {
-  &.el-tour__close,
-  &.el-dialog__close,
-  &.el-drawer__close,
-  &.el-message-box__close,
-  &.el-notification__closeBtn,
-  .el-upload-list__item.is-ready &.el-icon--close {
-    width: 24px;
-    height: 24px;
-    outline: none;
-    border-radius: 4px;
-    transition:
-      background-color 0.2s,
-      color 0.2s;
+  /* Primary Button - Blue Pill */
+  &--primary {
+    background-color: var(--color-blue);
+    color: #fff;
+    box-shadow: none;
+    font-weight: 500;
 
     &:hover {
-      color: rgb(0 0 0 / 88%) !important;
+      background-color: var(--color-blue-hover);
+      transform: none; /* No movement on Apple buttons */
+      opacity: 0.9;
+    }
+
+    &:active {
+      background-color: #006edb;
+      opacity: 1;
+    }
+  }
+
+  /* Default Button - Gray background */
+  &--default {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--color-gray-900);
+    border: none;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      color: var(--color-gray-900);
+      border: none;
+    }
+  }
+
+  &--text {
+    background: transparent;
+    color: var(--color-blue);
+    padding: 0 8px;
+
+    &:hover {
+      background: rgba(0, 113, 227, 0.1);
       text-decoration: none;
-      background-color: rgb(0 0 0 / 6%);
-
-      .pure-dialog-svg {
-        color: rgb(0 0 0 / 88%) !important;
-      }
     }
+  }
+
+  /* Large Button */
+  &--large {
+    height: 40px;
+    padding: 11px 22px;
+    font-size: 17px;
   }
 }
 
-/* 克隆并自定义 ElMessage 样式，不会影响 ElMessage 原本样式，在 src/utils/message.ts 中调用自定义样式 ElMessage 方法即可，整体暗色风格在 src/style/dark.scss 文件进行了适配 */
-.pure-message {
-  background: #fff !important;
-  border-width: 0 !important;
-  box-shadow:
-    0 3px 6px -4px #0000001f,
-    0 6px 16px #00000014,
-    0 9px 28px 8px #0000000d !important;
+/* Card Enhancements - Minimalist */
+.el-card {
+  border: 1px solid var(--color-gray-200); /* Very subtle border */
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  background-color: #fff;
+  contain: layout style; /* Optimize burden: Paint containment */
+  transition: box-shadow var(--transition-base);
 
-  & .el-message__content {
-    color: #000000d9 !important;
-    pointer-events: all !important;
-    background-image: initial !important;
+  &:hover {
+    box-shadow: var(--shadow-md);
   }
 
-  & .el-message__closeBtn {
-    outline: none;
-    border-radius: 4px;
-    transition:
-      background-color 0.2s,
-      color 0.2s;
+  &__header {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-gray-100);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--color-gray-900);
+  }
+
+  &__body {
+    padding: var(--space-5);
+  }
+}
+
+/* Input Enhancements - Clean & Borderless focus */
+.el-input {
+  &__wrapper {
+    background-color: rgba(0, 0, 0, 0.05); /* Light gray fill */
+    border-radius: var(--radius-md);
+    box-shadow: none !important; /* Remove default borders */
+    padding: 4px 12px;
+    transition: background-color var(--transition-fast);
 
     &:hover {
-      background-color: rgb(0 0 0 / 6%);
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    &.is-focus {
+      background-color: #fff;
+      box-shadow: 0 0 0 2px var(--color-blue) !important; /* Focus ring */
+    }
+  }
+
+  &__inner {
+    height: 36px;
+    color: var(--color-gray-900);
+
+    &::placeholder {
+      color: var(--color-gray-500);
     }
   }
 }
 
-/* 自定义菜单搜索样式 */
-.pure-search-dialog {
-  @media screen and (width > 760px) and (width <= 940px) {
-    .el-input__inner {
-      font-size: 12px;
+/* Table Enhancements - Edge-to-edge feel */
+.el-table {
+  --el-table-header-bg-color: #fff;
+  --el-table-row-hover-bg-color: var(--color-gray-50);
+  border-radius: var(--radius-md);
+  contain: layout style; /* Optimize burden: Paint containment */
+
+  &__header {
+    th {
+      font-weight: 600;
+      color: var(--color-gray-500);
+      font-size: 13px;
+      text-transform: uppercase; /* Cleaner headers */
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid var(--color-gray-200);
     }
   }
 
-  @media screen and (width <= 470px) {
-    .el-input__inner {
-      font-size: 12px;
-    }
-  }
-
-  .el-dialog__header {
-    display: none;
-  }
-
-  .el-input__inner {
-    font-size: 1.2em;
-  }
-
-  .el-dialog__footer {
-    width: calc(100% + 32px);
-    padding: 10px 20px;
-    margin: auto -16px -16px;
-    box-shadow:
-      0 -1px 0 0 #e0e3e8,
-      0 -3px 6px 0 rgb(69 98 155 / 12%);
+  td.el-table__cell {
+    border-bottom: 1px solid var(--color-gray-100);
+    padding: 12px 0;
+    font-size: 15px;
   }
 }
 
-/* 仿 el-scrollbar 滚动条样式，支持大多数浏览器，如Chrome、Edge、Firefox、Safari等。整体暗色风格在 src/style/dark.scss 文件进行了适配 */
-.pure-scrollbar {
-  scrollbar-color: rgb(221 222 224) transparent; /* 滑块颜色、轨道颜色 */
+/* Dialog Enhancements - macOS Sheet Style */
+.el-dialog {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
 
-  /* Firefox */
-  scrollbar-width: thin; /* 可选值为 'auto', 'thin', 'none' */
-  ::-webkit-scrollbar {
-    width: 6px; /* 滚动条宽度 */
+  &__header {
+    padding: var(--space-4) var(--space-5);
+    margin: 0;
+    border-bottom: 1px solid var(--color-gray-100);
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
   }
 
-  /* 滚动条轨道 */
-  ::-webkit-scrollbar-track {
-    background: transparent; /* 轨道颜色 */
+  &__title {
+    font-size: 17px;
+    font-weight: 600;
   }
 
-  /* 滚动条滑块 */
-  ::-webkit-scrollbar-thumb {
-    background-color: rgb(221 222 224);
+  &__footer {
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--color-gray-100);
+    background-color: var(--color-gray-50);
+  }
+}
+
+/* Tag Enhancements */
+.el-tag {
+  border-radius: 4px; /* More rectangular tags */
+  border: none;
+  font-weight: 500;
+  padding: 0 8px;
+
+  &--success {
+    background-color: rgba(40, 205, 65, 0.1);
+    color: var(--color-green);
+  }
+
+  &--warning {
+    background-color: rgba(255, 149, 0, 0.1);
+    color: var(--color-orange);
+  }
+
+  &--danger {
+    background-color: rgba(255, 59, 48, 0.1);
+    color: var(--color-red);
+  }
+
+  &--info {
+    background-color: rgba(142, 142, 147, 0.1);
+    color: var(--color-gray-500);
+  }
+}
+
+/* Switch - iOS Style */
+.el-switch {
+  &.is-checked .el-switch__core {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+  }
+}
+
+/* Dropdown */
+.el-dropdown-menu {
+  border-radius: var(--radius-md);
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  padding: 4px;
+
+  &__item {
     border-radius: 4px;
-  }
+    margin: 2px 0;
 
-  /* 滚动条滑块：hover状态 */
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(199 201 203); /* 滑块hover颜色 */
+    &:hover {
+      background-color: var(--color-blue);
+      color: #fff;
+    }
   }
 }

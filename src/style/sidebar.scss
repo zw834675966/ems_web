@@ -48,7 +48,7 @@
     height: 100vh;
     min-height: 100%;
     margin-left: $sideBarWidth;
-    background: #f0f2f5;
+    background: var(--color-cream-100);
 
     /* main-content 属性动画 */
     transition: margin-left var(--pure-transition-duration);
@@ -93,7 +93,7 @@
     overflow: visible;
     font-size: 0;
     background: var(--pure-theme-menu-bg) !important;
-    border-right: 1px solid var(--pure-border-color);
+    border-right: 1px solid var(--color-cream-200);
 
     /* 展开动画 */
     transition: width var(--pure-transition-duration);
@@ -240,7 +240,8 @@
       margin: 4px 0;
       content: "";
       background: var(--el-color-primary) !important;
-      border-radius: 3px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
   }
 
@@ -297,14 +298,15 @@
       color: #fff;
     }
 
-    .el-menu-item.is-active.nest-menu::before {
-      position: absolute;
-      inset: 0 8px;
-      clear: both;
-      content: "";
-      background: var(--el-color-primary) !important;
-      border-radius: 3px;
-    }
+      .el-menu-item.is-active.nest-menu::before {
+        position: absolute;
+        inset: 0 8px;
+        clear: both;
+        content: "";
+        background: var(--el-color-primary) !important;
+        border-radius: var(--radius-md);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
 
     .el-menu-item,
     .el-sub-menu {
@@ -385,14 +387,15 @@
       color: #fff;
     }
 
-    .el-menu-item.is-active.nest-menu::before {
-      position: absolute;
-      inset: 0 5px;
-      clear: both;
-      content: "";
-      background: var(--el-color-primary) !important;
-      border-radius: 3px;
-    }
+      .el-menu-item.is-active.nest-menu::before {
+        position: absolute;
+        inset: 0 8px;
+        clear: both;
+        content: "";
+        background: var(--el-color-primary) !important;
+        border-radius: var(--radius-md);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
   }
 
   .horizontal-header {
@@ -627,7 +630,7 @@ body[layout="vertical"] {
   /* 设置 */
   .set-icon {
     &:hover {
-      background: #f6f6f6;
+      background: var(--color-cream-100);
     }
   }
 }

@@ -68,6 +68,7 @@ declare global {
     VITE_PUBLIC_PATH: string;
     VITE_ROUTER_HISTORY: string;
     VITE_CDN: boolean;
+    VITE_API_BASE?: string;
     VITE_HIDE_HOME: string;
     VITE_COMPRESSION: ViteCompression;
     VITE_ENABLE_MOCK: boolean;

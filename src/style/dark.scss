@@ -1,182 +1,381 @@
 @use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;
 
-/* 整体暗色风格适配 */
+/* ============================================
+   DARK MODE ADAPTATIONS
+   ============================================ */
+
 html.dark {
-  $border-style: #303030;
-  $color-white: #fff;
+  --color-cream-50: #0f0f0f;
+  --color-cream-100: #1a1a1a;
+  --color-cream-200: #2a2a2a;
+  --color-cream-300: #3a3a3a;
+  --color-cream-400: #4a4a4a;
+  --color-cream-500: #6a6a6a;
+  --color-cream-600: #8a8a8a;
+  --color-cream-700: #aaaaaa;
+  --color-cream-800: #c4c4c4;
+  --color-cream-900: #e4e4e4;
 
-  /* 自定义深色背景颜色 */
-  // --el-bg-color: #020409;
+  --pure-border-color: rgba(255, 255, 255, 0.1);
+  --pure-switch-off-color: rgba(255, 255, 255, 0.3);
+}
 
-  /* 常用border-color 需要时可取用 */
-  --pure-border-color: rgb(253 253 253 / 12%);
+html.dark .navbar,
+html.dark .tags-view,
+html.dark .contextmenu,
+html.dark .sidebar-container,
+html.dark .horizontal-header,
+html.dark .sidebar-logo-container,
+html.dark .horizontal-header .el-sub-menu__title,
+html.dark .horizontal-header .submenu-title-noDropdown {
+  background: rgba(26, 26, 26, 0.95) !important;
+  border-color: var(--color-cream-300);
+}
 
-  /* switch关闭状态下的color 需要时可取用 */
-  --pure-switch-off-color: #ffffff3f;
+html.dark .app-main,
+html.dark .app-main-nofixed-header {
+  background: #0f0f0f !important;
+}
 
-  .navbar,
-  .tags-view,
-  .contextmenu,
-  .sidebar-container,
-  .horizontal-header,
-  .sidebar-logo-container,
-  .horizontal-header .el-sub-menu__title,
-  .horizontal-header .submenu-title-noDropdown {
-    background: var(--el-bg-color) !important;
-  }
+/* Tags view */
+html.dark .tags-view .arrow-left,
+html.dark .tags-view .arrow-right {
+  border-right: 1px solid var(--color-cream-300);
+  box-shadow: none;
+}
 
-  .app-main,
-  .app-main-nofixed-header {
-    background: #020409 !important;
-  }
+html.dark .tags-view .arrow-right {
+  border-left: 1px solid var(--color-cream-300);
+}
 
-  /* 标签页 */
-  .tags-view {
-    .arrow-left,
-    .arrow-right {
-      border-right: 1px solid $border-style;
-      box-shadow: none;
-    }
+html.dark .tags-view .scroll-item .el-icon-close:hover {
+  color: #fff !important;
+  background-color: rgba(255, 255, 255, 0.12);
+}
 
-    .arrow-right {
-      border-left: 1px solid $border-style;
-    }
+html.dark .tags-view .scroll-item .chrome-tab .tag-title {
+  color: var(--color-cream-600);
+}
 
-    .scroll-item {
-      .el-icon-close {
-        &:hover {
-          color: rgb(255 255 255 / 85%) !important;
-          background-color: rgb(255 255 255 / 12%);
-        }
-      }
+html.dark .tags-view .scroll-item .chrome-tab:hover .chrome-tab__bg {
+  color: var(--color-cream-400);
+}
 
-      .chrome-tab {
-        .tag-title {
-          color: #666;
-        }
+html.dark .tags-view .scroll-item .chrome-tab:hover .tag-title {
+  color: var(--color-cream-500);
+}
 
-        &:hover {
-          .chrome-tab__bg {
-            color: #333;
-          }
+/* System settings panel */
+html.dark .right-panel-items .el-divider__text {
+  --el-bg-color: rgba(26, 26, 26, 0.95);
+}
 
-          .tag-title {
-            color: #adadad;
-          }
-        }
-      }
-    }
-  }
+html.dark .right-panel-items .el-divider--horizontal {
+  border-top: 1px solid var(--color-cream-300);
+}
 
-  /* 系统配置面板 */
-  .right-panel-items {
-    .el-divider__text {
-      --el-bg-color: var(--el-bg-color);
-    }
+html.dark .el-card {
+  --el-card-bg-color: rgba(26, 26, 26, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+}
 
-    .el-divider--horizontal {
-      border-top: none;
-    }
-  }
+html.dark .el-backtop {
+  --el-backtop-bg-color: rgba(42, 42, 42, 0.9);
+  --el-backtop-hover-bg-color: var(--el-color-primary);
+  transition: background-color 0.25s cubic-bezier(0.7, 0.3, 0.1, 1);
+}
 
-  .el-card {
-    --el-card-bg-color: var(--el-bg-color);
-  }
+html.dark .el-dropdown-menu__item:not(.is-disabled):hover {
+  background: rgba(255, 255, 255, 0.08);
+}
 
-  .el-backtop {
-    --el-backtop-bg-color: rgb(72 72 78);
-    --el-backtop-hover-bg-color: var(--el-color-primary);
+/* Close icon hover states */
+html.dark .el-icon.el-tour__close:hover,
+html.dark .el-icon.el-dialog__close:hover,
+html.dark .el-icon.el-drawer__close:hover,
+html.dark .el-icon.el-message-box__close:hover,
+html.dark .el-icon.el-notification__closeBtn:hover {
+  color: #fff !important;
+  background-color: rgba(255, 255, 255, 0.12);
+}
 
-    transition: background-color 0.25s cubic-bezier(0.7, 0.3, 0.1, 1);
-  }
+html.dark .el-icon.el-tour__close:hover .pure-dialog-svg,
+html.dark .el-icon.el-dialog__close:hover .pure-dialog-svg,
+html.dark .el-icon.el-drawer__close:hover .pure-dialog-svg,
+html.dark .el-icon.el-message-box__close:hover .pure-dialog-svg,
+html.dark .el-icon.el-notification__closeBtn:hover .pure-dialog-svg {
+  color: #fff !important;
+}
 
-  .el-dropdown-menu__item:not(.is-disabled):hover {
-    background: transparent;
-  }
+/* Custom ElMessage dark mode */
+html.dark .pure-message {
+  background-color: rgba(36, 37, 37, 0.95) !important;
+  background-image: initial !important;
+  box-shadow:
+    rgb(0 0 0 / 40%) 0 3px 6px -4px,
+    rgb(0 0 0 / 30%) 0 6px 16px 0,
+    rgb(0 0 0 / 20%) 0 9px 28px 8px !important;
+}
 
-  /* 全局覆盖element-plus的el-dialog、el-drawer、el-message-box、el-notification组件右上角关闭图标的样式，表现更鲜明 */
-  .el-icon {
-    &.el-dialog__close,
-    &.el-drawer__close,
-    &.el-message-box__close,
-    &.el-notification__closeBtn {
-      &:hover {
-        color: rgb(255 255 255 / 85%) !important;
-        background-color: rgb(255 255 255 / 12%);
+html.dark .pure-message .el-message__content {
+  color: #fff !important;
+  pointer-events: all !important;
+  background-image: initial !important;
+}
 
-        .pure-dialog-svg {
-          color: rgb(255 255 255 / 85%) !important;
-        }
-      }
-    }
-  }
+html.dark .pure-message .el-message__closeBtn:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.12);
+}
 
-  /* 克隆并自定义 ElMessage 样式，不会影响 ElMessage 原本样式，在 src/utils/message.ts 中调用自定义样式 ElMessage 方法即可，整体浅色风格在 src/style/element-plus.scss 文件进行了适配 */
-  .pure-message {
-    background-color: rgb(36 37 37) !important;
-    background-image: initial !important;
-    box-shadow:
-      rgb(13 13 13 / 12%) 0 3px 6px -4px,
-      rgb(13 13 13 / 8%) 0 6px 16px 0,
-      rgb(13 13 13 / 5%) 0 9px 28px 8px !important;
+/* Menu search dialog */
+html.dark .pure-search-dialog .el-dialog__footer {
+  box-shadow:
+    0 -1px 0 0 var(--color-cream-300),
+    0 -3px 6px 0 rgb(69 98 155 / 12%);
+  background: rgba(26, 26, 26, 0.95);
+}
 
-    & .el-message__content {
-      color: $color-white !important;
-      pointer-events: all !important;
-      background-image: initial !important;
-    }
+html.dark .pure-search-dialog .search-footer .search-footer-item {
+  color: var(--color-cream-600);
+}
 
-    & .el-message__closeBtn {
-      &:hover {
-        color: rgb(255 255 255 / 85%);
-        background-color: rgb(255 255 255 / 12%);
-      }
-    }
-  }
+html.dark .pure-search-dialog .search-footer .search-footer-item .icon {
+  box-shadow: none;
+}
 
-  /* 自定义菜单搜索样式 */
-  .pure-search-dialog {
-    .el-dialog__footer {
-      box-shadow:
-        0 -1px 0 0 #555a64,
-        0 -3px 6px 0 rgb(69 98 155 / 12%);
-    }
+/* ReSegmented component */
+html.dark .pure-segmented {
+  color: var(--color-cream-600);
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--color-cream-300);
+}
 
-    .search-footer {
-      .search-footer-item {
-        color: rgb(235 235 235 / 60%);
+html.dark .pure-segmented .pure-segmented-item-selected {
+  background-color: rgba(255, 255, 255, 0.08);
+}
 
-        .icon {
-          box-shadow: none;
-        }
-      }
-    }
-  }
+html.dark .pure-segmented .pure-segmented-item-disabled {
+  color: var(--color-cream-500);
+}
 
-  /* ReSegmented 组件 */
-  .pure-segmented {
-    color: rgb(255 255 255 / 65%);
-    background-color: #000;
+/* Custom scrollbar */
+html.dark .pure-scrollbar {
+  scrollbar-color: var(--color-cream-500) transparent;
+}
 
-    .pure-segmented-item-selected {
-      background-color: #1f1f1f;
-    }
+html.dark .pure-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-cream-500);
+}
 
-    .pure-segmented-item-disabled {
-      color: rgb(255 255 255 / 25%);
-    }
-  }
+html.dark .pure-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cream-600);
+}
 
-  /* 仿 el-scrollbar 滚动条样式 支持大多数浏览器，如Chrome、Edge、Firefox、Safari等 */
-  .pure-scrollbar {
-    scrollbar-color: rgb(63 64 66) transparent;
+/* Element Plus components dark mode */
+html.dark .el-table {
+  background-color: rgba(26, 26, 26, 0.95) !important;
+  border-color: var(--color-cream-300) !important;
+}
 
-    ::-webkit-scrollbar-thumb {
-      background-color: rgb(63 64 66);
-    }
+html.dark .el-table__header th {
+  background-color: rgba(42, 42, 42, 0.95) !important;
+  color: var(--color-cream-700);
+  border-bottom-color: var(--color-cream-300) !important;
+}
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgb(92 93 96);
-    }
-  }
+html.dark .el-table__body tr {
+  background-color: rgba(26, 26, 26, 0.95);
+}
+
+html.dark .el-table__body tr:hover {
+  background-color: rgba(42, 42, 42, 0.95) !important;
+}
+
+html.dark .el-table__body td {
+  border-bottom-color: var(--color-cream-300);
+}
+
+html.dark .el-input__wrapper {
+  background-color: rgba(26, 26, 26, 0.95);
+  border-color: var(--color-cream-400);
+}
+
+html.dark .el-input__wrapper:hover {
+  border-color: var(--color-cream-500);
+}
+
+html.dark .el-input__wrapper.is-focus {
+  border-color: var(--el-color-primary);
+  box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.15);
+}
+
+html.dark .el-input__inner {
+  color: var(--color-cream-800);
+  background-color: transparent;
+}
+
+html.dark .el-input__inner::placeholder {
+  color: var(--color-cream-500);
+}
+
+html.dark .el-select__wrapper {
+  background-color: rgba(26, 26, 26, 0.95);
+  border-color: var(--color-cream-400);
+}
+
+html.dark .el-select__wrapper:hover {
+  border-color: var(--color-cream-500);
+}
+
+html.dark .el-select__wrapper.is-focus {
+  border-color: var(--el-color-primary);
+  box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.15);
+}
+
+html.dark .el-card__header {
+  border-bottom-color: var(--color-cream-300);
+  color: var(--color-cream-700);
+}
+
+html.dark .el-card__body {
+  color: var(--color-cream-800);
+}
+
+html.dark .el-button--default {
+  background-color: rgba(26, 26, 26, 0.95);
+  border-color: var(--color-cream-400);
+  color: var(--color-cream-800);
+}
+
+html.dark .el-button--default:hover {
+  background-color: rgba(42, 42, 42, 0.95);
+  border-color: var(--color-cream-500);
+}
+
+html.dark .el-dialog {
+  background-color: rgba(26, 26, 26, 0.95);
+  border: 1px solid var(--color-cream-300);
+}
+
+html.dark .el-dialog__header {
+  border-bottom-color: var(--color-cream-300);
+}
+
+html.dark .el-dialog__body {
+  color: var(--color-cream-800);
+}
+
+html.dark .el-dialog__footer {
+  border-top-color: var(--color-cream-300);
+}
+
+html.dark .el-dropdown-menu {
+  background-color: rgba(26, 26, 26, 0.95);
+  border-color: var(--color-cream-300);
+}
+
+html.dark .el-dropdown-menu__item {
+  color: var(--color-cream-700);
+}
+
+html.dark .el-dropdown-menu__item:hover {
+  background-color: rgba(42, 42, 42, 0.95);
+  color: var(--color-cream-800);
+}
+
+html.dark .el-menu-item,
+html.dark .el-sub-menu__title {
+  color: var(--color-cream-600);
+}
+
+html.dark .el-menu-item:hover,
+html.dark .el-sub-menu__title:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-cream-800);
+}
+
+html.dark .el-menu__popup {
+  background-color: rgba(26, 26, 26, 0.95);
+  border-color: var(--color-cream-300);
+}
+
+html.dark .el-tabs__nav-wrap::after {
+  background-color: var(--color-cream-300);
+}
+
+html.dark .el-tabs__item {
+  color: var(--color-cream-600);
+}
+
+html.dark .el-tabs__item:hover {
+  color: var(--color-amber-400);
+}
+
+html.dark .el-tabs__item.is-active {
+  color: var(--color-amber-400);
+}
+
+html.dark .el-checkbox__inner {
+  background-color: rgba(26, 26, 26, 0.95);
+  border-color: var(--color-cream-500);
+}
+
+html.dark .el-checkbox__inner:hover {
+  border-color: var(--color-amber-500);
+}
+
+html.dark .el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: var(--color-amber-500);
+  border-color: var(--color-amber-500);
+}
+
+html.dark .el-checkbox__label {
+  color: var(--color-cream-800);
+}
+
+html.dark .el-radio__inner {
+  background-color: rgba(26, 26, 26, 0.95);
+  border-color: var(--color-cream-500);
+}
+
+html.dark .el-radio__inner:hover {
+  border-color: var(--color-amber-500);
+}
+
+html.dark .el-radio__input.is-checked .el-radio__inner {
+  background-color: var(--color-amber-500);
+  border-color: var(--color-amber-500);
+}
+
+html.dark .el-radio__label {
+  color: var(--color-cream-800);
+}
+
+html.dark .el-loading-mask {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+html.dark .el-loading-spinner .el-loading-text {
+  color: var(--color-cream-800);
+}
+
+html.dark .el-alert--success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+html.dark .el-alert--warning {
+  background: rgba(212, 168, 83, 0.15);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+}
+
+html.dark .el-alert--error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+html.dark .el-alert--info {
+  background: rgba(74, 85, 104, 0.15);
+  border: 1px solid rgba(74, 85, 104, 0.3);
 }
